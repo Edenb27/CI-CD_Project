@@ -1,11 +1,6 @@
 pipeline {
-    agent {
-        docker {
-            label 'general'
-            image '352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-polybot-app:V1.0.24'
-            args  '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
+    agent any
+
 
     environment {
         ECR_URL = "352708296901.dkr.ecr.us-east-2.amazonaws.com"
