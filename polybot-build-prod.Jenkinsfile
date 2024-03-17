@@ -29,12 +29,4 @@ pipeline {
             }
         }
 
-//         stage('Trigger Deploy') {
-//             steps {
-//                 build job: 'RobertaDeploy', wait: false, parameters: [
-//                     string(name: 'ROBERTA_IMAGE_URL', value: '$ECR_URL/edenb27-jenkins:0.0.4')
-//                 ]
-//             }
-//         }
-//     }
 }
