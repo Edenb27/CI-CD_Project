@@ -10,6 +10,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                dir('polybot')
                 sh '''
                 pwd
                 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ECR_URL
