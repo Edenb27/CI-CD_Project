@@ -13,8 +13,8 @@ pipeline {
                 sh '''
                 pwd
                 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ECR_URL
-                docker build -t $ECR_URL/edenb27-polybot-app:0.0.3 .
-                docker push $ECR_URL/edenb27-jenkins:0.0.3
+                docker build -t edenb27-polybot-app:0.0.3 .
+                docker push edenb27-jenkins:0.0.3
                 '''
             }
             post {
