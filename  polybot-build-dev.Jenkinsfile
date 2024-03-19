@@ -15,9 +15,9 @@ pipeline {
                 sh '''
                 cd polybot
                 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ECR_URL
-                docker build -t $IMAGE_NAME:0.0.6 .
-                docker tag $IMAGE_NAME:0.0.6 $ECR_URL/$IMAGE_NAME:0.0.6
-                docker push  $ECR_URL/$IMAGE_NAME:0.0.6
+                docker build -t $IMAGE_NAME:0.0.7 .
+                docker tag $IMAGE_NAME:0.0.6 $ECR_URL/$IMAGE_NAME:0.0.7
+                docker push  $ECR_URL/$IMAGE_NAME:0.0.7
                 '''
             }
             post {
