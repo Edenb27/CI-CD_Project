@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: polybot
-        image: POLYBOT_PROD_IMG_URL
+        image: dfsdgsag
         resources:
           requests:
             memory: "64Mi"
