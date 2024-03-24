@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: polybot
-        image: IMG_URL
+        image: POLYBOT_PROD_IMG_URL
         resources:
           requests:
             memory: "64Mi"
