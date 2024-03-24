@@ -15,7 +15,7 @@ pipeline {
                 sh '''
                 cd yolo5
                 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ECR_URL
-                docker build -t $IMAGE_NAME:$BUILD_NUMBER .
+                docker build -t $IMAGE_NAME:0.0.$BUILD_NUMBER .
                 docker tag $IMAGE_NAME:0.0.$BUILD_NUMBER $ECR_URL/$IMAGE_NAME:0.0.$BUILD_NUMBER
                 docker push  $ECR_URL/$IMAGE_NAME:0.0.$BUILD_NUMBER
                 '''
