@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         ECR_URL = "352708296901.dkr.ecr.us-east-2.amazonaws.com"
-        IMAGE_NAME = "edenb27-polybot-app"
+        IMAGE_NAME_POLYBOT = "edenb27-polybot-app"
 
     }
 
