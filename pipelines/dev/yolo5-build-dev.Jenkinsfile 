@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         ECR_URL = "352708296901.dkr.ecr.us-east-2.amazonaws.com"
-        IMAGE_NAME = "edenb27-polybot-app"
+        IMAGE_NAME = "edenb27-yolo5-app"
 
     }
 
@@ -24,6 +24,14 @@ pipeline {
                 always {
                     sh 'docker image prune -a --force'
                 }
+            }
+        }
+
+        stage('Trigger Release') {
+            steps {
+                build job: 'Release', wait: false, parameters: [
+                    string(name: 'IMG_URL', value: '$ECR_URL/$IMAGE_NAME:0.0.$BUILD_NUMBER')
+                ]
             }
         }
     }
