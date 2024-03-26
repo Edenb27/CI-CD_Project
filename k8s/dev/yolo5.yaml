@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yolo5-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: yolo5
+  template:
+    metadata:
+      labels:
+        app: yolo5
+    spec:
+      containers:
+      - name: yolo5
+        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-yolo5-app:V1.0.12
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "5Gi"
+            cpu: "2000m"
+#        readinessProbe:
+#          httpGet:
+#            path: /health
+#            port: 8081
+#          initialDelaySeconds: 5
+#          periodSeconds: 10
+#        livenessProbe:
+#          httpGet:
+#            path: /health
+#            port: 8081
+#          initialDelaySeconds: 10
+#          periodSeconds: 15
+
+
+---
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: yolo5-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: yolo5-deployment
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
