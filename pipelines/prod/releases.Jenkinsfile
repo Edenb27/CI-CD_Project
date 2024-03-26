@@ -15,7 +15,7 @@ pipeline {
                       YAML_FILE="k8s/prod/polybot.yaml"
                     elif [[ $IMG_URL == *"-yolo5-"* ]]; then
                       YAML_FILE="k8s/prod/yolo5.yaml"
-                    else
+                    else:
                         exit 7
                     fi
 
