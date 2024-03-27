@@ -19,8 +19,8 @@ pipeline {
                         exit 7
                     fi
 
-                    git config --global user.email "Jenkins@ip-10-0-0-178"
-                    git config --global user.name "Jenkins"
+                    git config --global user.email "edenblavat@gmail.com"
+                    git config --global user.name "edenb27"
 
                     git checkout releases
                     git merge origin/master
