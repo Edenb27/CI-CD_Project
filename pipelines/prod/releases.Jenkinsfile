@@ -15,17 +15,19 @@ pipeline {
                       YAML_FILE="k8s/prod/polybot.yaml"
                     elif [[ $IMG_URL == *"-yolo5-"* ]]; then
                       YAML_FILE="k8s/prod/yolo5.yaml"
-                    else:
+                    else
                         exit 7
                     fi
 
+                    git config --global user.email "edenblavat@gmail.com"
+                    git config --global user.name "edenb27"
 
                     git checkout releases
-                    git -c user.name='edenb27' -c user.email=edenblavat@gmail.com merge origin/master
+                    git merge origin/master
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE
 
                     git add $YAML_FILE
-                    git -c user.name='edenb27' -c user.email=edenblavat@gmail.com commit -m "IMG_URL"
+                    git commit -m "IMG_URL"
                     git push https://edenb27:$PASSWORD@github.com/Edenb27/CI-CD_Project.git releases
                     '''
                 }

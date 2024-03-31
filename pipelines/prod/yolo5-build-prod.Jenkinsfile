@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         ECR_URL = "352708296901.dkr.ecr.us-east-2.amazonaws.com"
-        IMAGE_NAME = "edenb27-yolo5-app"
+
 
     }
 
@@ -15,9 +15,9 @@ pipeline {
                 sh '''
                 cd polybot
                 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ECR_URL
-                docker build -t $IMAGE_NAME:0.0.$BUILD_NUMBER .
-                docker tag $IMAGE_NAME:0.0.$BUILD_NUMBER $ECR_URL/$IMAGE_NAME:0.0.$BUILD_NUMBER
-                docker push  $ECR_URL/$IMAGE_NAME:0.0.$BUILD_NUMBER
+                docker build -t edenb27-yolo5-app:0.0.$BUILD_NUMBER .
+                docker tag edenb27-yolo5-app:0.0.$BUILD_NUMBER $ECR_URL/edenb27-yolo5-app:0.0.$BUILD_NUMBER
+                docker push  $ECR_URL/edenb27-yolo5-app:0.0.$BUILD_NUMBER
                 '''
             }
             post {
@@ -30,7 +30,7 @@ pipeline {
         stage('Trigger Release') {
             steps {
                 build job: 'Release', wait: false, parameters: [
-                    string(name: 'IMG_URL', value: '$ECR_URL/$IMAGE_NAME:0.0.$BUILD_NUMBER')
+                    string(name: 'IMG_URL', value: '$ECR_URL/edenb27-yolo5-app:0.0.$BUILD_NUMBER')
                 ]
             }
         }
