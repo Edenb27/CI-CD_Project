@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: polybot
-        image: $ECR_URL/edenb27-polybot-app:0.0.57
+        image: IMG_URL
         resources:
           requests:
             memory: "64Mi"
