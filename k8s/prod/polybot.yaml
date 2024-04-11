@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: polybot
-        image: $ECR_URL/$IMAGE_NAME:0.0.19
+        image: IMG_URL
         resources:
           requests:
             memory: "64Mi"
