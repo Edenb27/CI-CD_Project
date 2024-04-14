@@ -21,11 +21,6 @@ pipeline {
 
                 '''
             }
-            post {
-                always {
-                    sh 'docker image prune -a --force'
-                }
-            }
         }
 
         stage('Trigger Release') {

@@ -23,6 +23,8 @@ pipeline {
                     git config --global user.name "edenb27"
 
                     git checkout releases
+                    git merge origin/releases
+                    git pull
                     git merge origin/master
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE
 
