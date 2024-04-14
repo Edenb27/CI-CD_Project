@@ -20,11 +20,6 @@ pipeline {
                 docker push  $ECR_URL/edenb27-yolo5-app:0.0.$BUILD_NUMBER
                 '''
             }
-            post {
-                always {
-                    sh 'docker image prune -a --force'
-                }
-            }
         }
 
         stage('Trigger Release') {
