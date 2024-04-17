@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: polybot
-        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-polybot-app:0.0.88
+        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-polybot-app:0.0.92
         resources:
           requests:
             memory: "64Mi"
