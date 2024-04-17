@@ -13,7 +13,7 @@ pipeline {
             steps {
 
                 sh '''
-                cd polybot
+                cd yolo5
                 aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin $ECR_URL
                 docker build -t edenb27-yolo5-app:0.0.$BUILD_NUMBER .
                 docker tag edenb27-yolo5-app:0.0.$BUILD_NUMBER $ECR_URL/edenb27-yolo5-app:0.0.$BUILD_NUMBER
