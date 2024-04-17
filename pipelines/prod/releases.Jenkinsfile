@@ -26,7 +26,6 @@ pipeline {
                     git pull
                     git merge origin/master
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE
-
                     git add $YAML_FILE
                     git commit -m "IMG_URL"
                     git push https://edenb27:$PASSWORD@github.com/Edenb27/CI-CD_Project.git releases
