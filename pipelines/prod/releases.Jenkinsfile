@@ -24,7 +24,7 @@ pipeline {
 
                     git checkout releases
 
-                    git pull
+                    git pull origin master
                     git merge origin/master
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE
                     git add $YAML_FILE
