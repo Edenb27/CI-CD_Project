@@ -11,7 +11,7 @@ app = flask.Flask(__name__)
 # TODO load TELEGRAM_TOKEN value from Secret Manager
 def get_telegram_token():
     # Specify the secret name
-    secret_name = os.environ['secret-aws-prod']
+    secret_name = os.environ['secret-aws']
 
     # Create a Secrets Manager client
     secret_client = boto3.client(service_name='secretsmanager',region_name='us-east-2')

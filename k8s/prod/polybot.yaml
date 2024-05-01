@@ -16,7 +16,7 @@ spec:
       - name: polybot
         image: IMG_URL
         env:
-        - name: secret-aws-prod
+        - name: secret-aws
           value: "EDEN-Poly"
         - name: TELEGRAM_APP_URL
           value: "https://eden-polybot.devops-int-college.com"
