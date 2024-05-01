@@ -49,16 +49,15 @@ def results():
     dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
     table_name = os.environ['dynamo-table']
     table = dynamodb.Table(table_name)
-    response = table.get_item(
-        Key={
-            'prediction_id': prediction_id,
-            'ChatID': chat_id,
-        }
-    )
-    item = response.get('Item')
-    if item:
-        text_results = item
-        bot.send_text(chat_id, text=str(text_results))
+
+    primary_key = {
+        'prediction_id': str(prediction_id)
+    }
+
+    item = table.get_item(Key=primary_key)['Item']
+    text_results = 'Predictions: ' + item['detected_objects']
+    print(f'chatId: {chat_id}')
+    bot.send_text(chat_id, text_results)
     return 'Ok'
 
 
