@@ -11,7 +11,7 @@ app = flask.Flask(__name__)
 # TODO load TELEGRAM_TOKEN value from Secret Manager
 def get_telegram_token():
     # Specify the secret name
-    secret_name = "EDEN-Poly"
+    secret_name = os.environ['secret-aws']
 
     # Create a Secrets Manager client
     secret_client = boto3.client(service_name='secretsmanager',region_name='us-east-2')
@@ -25,7 +25,7 @@ def get_telegram_token():
     return secret_dict['TELEGRAM_TOKEN']
 
 TELEGRAM_TOKEN = get_telegram_token()
-TELEGRAM_APP_URL = 'https://eden-polybot.devops-int-college.com'
+TELEGRAM_APP_URL = os.environ['TELEGRAM_APP_URL']
 
 
 @app.route('/health', methods=['GET'])
@@ -47,17 +47,18 @@ def results():
 
     # TODO use the prediction_id to retrieve results from DynamoDB and send to the end-user
     dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
-    table_name = 'edenb-yolo5'
+    table_name = os.environ['dynamo-table']
     table = dynamodb.Table(table_name)
-
-    primary_key = {
-        'prediction_id': str(prediction_id)
-    }
-
-    item = table.get_item(Key=primary_key)['Item']
-    text_results = 'Predictions: ' + item['detected_objects']
-    print(f'chatId: {chat_id}')
-    bot.send_text(chat_id, text_results)
+    response = table.get_item(
+        Key={
+            'prediction_id': prediction_id,
+            'ChatID': chat_id,
+        }
+    )
+    item = response.get('Item')
+    if item:
+        text_results = item
+        bot.send_text(chat_id, text=str(text_results))
     return 'Ok'
 
 

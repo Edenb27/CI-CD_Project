@@ -15,6 +15,17 @@ spec:
       containers:
       - name: polybot
         image: IMG_URL
+        env:
+          - name: secret-aws
+            value: "edenb-polybot-dev"
+          - name: TELEGRAM_APP_URL
+            value: "https://eden-polybot.devops-int-college.com"
+          - name: dynamo-table
+            value: "edenb-yolo5-dev"
+          - name: BUCKET_NAME
+            value: "edenb27-cicd-dev"
+          - name: sqs_url
+            value: "https://sqs.us-east-2.amazonaws.com/352708296901/edenb27-sqs-dev"
         resources:
           requests:
             memory: "64Mi"
