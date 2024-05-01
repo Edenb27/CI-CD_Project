@@ -6,11 +6,11 @@ metadata:
 spec:
   tls:
     - hosts:
-      - eden-polybot.devops-int-college.com
-      secretName: edenb-secret-dev
+      - eden-polybot-dev.devops-int-college.com
+      secretName: tls-secret
   ingressClassName: nginx-dev
   rules:
-    - host: eden-polybot.devops-int-college.com
+    - host: eden-polybot-dev.devops-int-college.com
       http:
         paths:
         - path: /
