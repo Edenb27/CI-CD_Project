@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: polybot-deployment
+  name: polybot-deployment-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: polybot
+      app: polybot-dev
   template:
     metadata:
       labels:
-        app: polybot
+        app: polybot-dev
     spec:
       containers:
-      - name: polybot
+      - name: polybot-dev
         image: IMG_URL
         env:
           - name: secret-aws
@@ -51,7 +51,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: polybot-service
+  name: polybot-service-dev
+  namespace: dev
 spec:
   selector:
     app: polybot
