@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx
+spec:
+  tls:
+    - hosts:
+      - eden-polybot.devops-int-college.com
+      secretName: edenb-secret
+  ingressClassName: nginx
+  rules:
+    - host: eden-polybot.devops-int-college.com
+      http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            # This assumes http-svc exists and routes to healthy endpoints
+            service:
+              name: polybot-service
+              port:
+                number: 8443
