@@ -44,7 +44,7 @@ spec:
             path: /health
             port: 8443
           initialDelaySeconds: 10
-          periodSeconds: 15
+          periodSeconds: 20
 
 ---
 
