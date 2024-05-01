@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: yolo5-deployment
+  name: yolo5-deployment-dev
+  namespace: dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: yolo5
+      app: yolo5-dev
   template:
     metadata:
       labels:
-        app: yolo5
+        app: yolo5-dev
     spec:
       containers:
-      - name: yolo5
+      - name: yolo5-dev
         image: IMG_URL
         resources:
           requests:
@@ -41,12 +42,12 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: yolo5-hpa
+  name: yolo5-hpa-dev
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: yolo5-deployment
+    name: yolo5-deployment-dev
   minReplicas: 1
   maxReplicas: 5
   metrics:
