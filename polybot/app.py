@@ -11,7 +11,7 @@ app = flask.Flask(__name__)
 # TODO load TELEGRAM_TOKEN value from Secret Manager
 def get_telegram_token():
     # Specify the secret name
-    secret_name = "EDEN-Poly"
+    secret_name = os.environ['secret-aws']
 
     # Create a Secrets Manager client
     secret_client = boto3.client(service_name='secretsmanager',region_name='us-east-2')
@@ -25,7 +25,7 @@ def get_telegram_token():
     return secret_dict['TELEGRAM_TOKEN']
 
 TELEGRAM_TOKEN = get_telegram_token()
-TELEGRAM_APP_URL = 'https://eden-polybot.devops-int-college.com'
+TELEGRAM_APP_URL = os.environ['TELEGRAM_APP_URL']
 
 
 @app.route('/health', methods=['GET'])
@@ -47,7 +47,7 @@ def results():
 
     # TODO use the prediction_id to retrieve results from DynamoDB and send to the end-user
     dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
-    table_name = 'edenb-yolo5'
+    table_name = os.environ['dynamo-table']
     table = dynamodb.Table(table_name)
 
     primary_key = {

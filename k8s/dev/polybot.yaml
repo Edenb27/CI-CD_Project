@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polybot-deployment-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: polybot-dev
+  template:
+    metadata:
+      labels:
+        app: polybot-dev
+    spec:
+      containers:
+      - name: polybot-dev
+        image: IMG_URL
+        env:
+          - name: secret-aws
+            value: "edenb-polybot-dev"
+          - name: TELEGRAM_APP_URL
+            value: "https://eden-polybot.devops-int-college.com"
+          - name: dynamo-table
+            value: "edenb-yolo5-dev"
+          - name: BUCKET_NAME
+            value: "edenb27-cicd-dev"
+          - name: sqs_url
+            value: "https://sqs.us-east-2.amazonaws.com/352708296901/edenb27-sqs-dev"
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8443
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8443
+          initialDelaySeconds: 10
+          periodSeconds: 15
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: polybot-service-dev
+  namespace: dev
+spec:
+  selector:
+    app: polybot
+  ports:
+    - protocol: TCP
+      port: 8443
+      targetPort: 8443
