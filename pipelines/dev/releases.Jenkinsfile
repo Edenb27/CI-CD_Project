@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Update YAML') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'github1', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
 
                     printenv
