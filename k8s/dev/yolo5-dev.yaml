@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: yolo5-dev
-        image: IMG_URL
+        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com:/edenb27-yolo5-dev:0.0.1
         resources:
           requests:
             memory: "128Mi"
