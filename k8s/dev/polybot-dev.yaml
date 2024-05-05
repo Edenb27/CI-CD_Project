@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: polybot-dev
-        image: IMG_URL
+        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com:/edenb27-polybot-dev:0.0.1
         env:
           - name: secret-aws
             value: "edenb-polybot-dev"
