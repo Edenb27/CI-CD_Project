@@ -16,7 +16,7 @@ class Bot:
         self.telegram_bot_client.remove_webhook()
         time.sleep(0.5)
 
-        cert_file = '/usr/src/app/edenb11.crt'
+        cert_file = os.environ['cert_file']
         # set the webhook URL
         with open(cert_file, 'r') as cert_file:
             self.telegram_bot_client.set_webhook(
