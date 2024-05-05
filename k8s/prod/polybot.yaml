@@ -26,6 +26,8 @@ spec:
           value: "edenb27-docker"
         - name: sqs_url
           value: "https://sqs.us-east-2.amazonaws.com/352708296901/edenb-yolo5"
+        - name: cert_file
+          value: "/usr/src/app/edenb11.crt"
         resources:
           requests:
             memory: "64Mi"
