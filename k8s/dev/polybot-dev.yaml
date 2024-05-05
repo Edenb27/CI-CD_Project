@@ -28,6 +28,8 @@ spec:
             value: "edenb27-cicd-dev"
           - name: sqs_url
             value: "https://sqs.us-east-2.amazonaws.com/352708296901/edenb27-sqs-dev"
+          - name: cert_file
+            value: "/usr/src/app/tls-dev.crt"
         resources:
           requests:
             memory: "64Mi"
