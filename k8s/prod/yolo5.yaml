@@ -14,7 +14,16 @@ spec:
     spec:
       containers:
       - name: yolo5
-        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-yolo5-app:0.0.55
+        image: IMG_URL
+        env:
+          - name: images_bucket
+            value: "edenb27-docker"
+          - name: queue_name
+            value: "edenb-yolo5"
+          - name: table_name
+            value: "edenb-yolo5"
+          - name: request_url
+            value: "polybot-service"
         resources:
           requests:
             memory: "128Mi"
