@@ -16,7 +16,7 @@ class Bot:
         self.telegram_bot_client.remove_webhook()
         time.sleep(0.5)
 
-        cert_file = '/usr/src/app/edenb11.crt'
+        cert_file = os.environ['cert_file']
         # set the webhook URL
         with open(cert_file, 'r') as cert_file:
             self.telegram_bot_client.set_webhook(
@@ -81,13 +81,13 @@ class ObjectDetectionBot(Bot):
 
         if self.is_current_msg_photo(msg):
             photo_path = self.download_user_photo(msg)
-            BUCKET_NAME = 'edenb27-docker'
+            BUCKET_NAME = os.environ['BUCKET_NAME']
             img_name = f'images/photos/{msg["chat"]["id"]}.jpeg'
             client = boto3.client('s3')
             client.upload_file(photo_path, BUCKET_NAME, img_name)
 
             sqs_client = boto3.client('sqs', region_name='us-east-2')
-            sqs_url = 'https://sqs.us-east-2.amazonaws.com/352708296901/edenb-yolo5'
+            sqs_url = os.environ['sqs_url']
             message_body = str(msg["chat"]["id"])
             message_id = f'{msg["chat"]["id"]}.jpeg'
             sqs_client.send_message(

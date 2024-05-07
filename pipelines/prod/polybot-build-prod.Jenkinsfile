@@ -25,7 +25,7 @@ pipeline {
 
         stage('Trigger Release') {
             steps {
-                build job: 'Release', wait: false, parameters: [
+                build job: 'Release-prod', wait: false, parameters: [
                     string(name: 'IMG_URL', value: "$ECR_URL/edenb27-polybot-app:0.0.$BUILD_NUMBER")
                 ]
             }

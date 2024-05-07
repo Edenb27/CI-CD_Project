@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Update YAML') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'github', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'github1', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
 
                     printenv
@@ -23,8 +23,6 @@ pipeline {
                     git config --global user.name "edenb27"
 
                     git checkout releases
-
-                    git reset --hard origin/releases
                     git pull
                     git merge origin/master
                     sed -i "s|image: .*|image: ${IMG_URL}|g" $YAML_FILE

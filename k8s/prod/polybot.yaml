@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: polybot
-        image: IMG_URL
+        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-polybot-app:0.0.142
         env:
         - name: secret-aws
           value: "EDEN-Poly"
@@ -26,6 +26,8 @@ spec:
           value: "edenb27-docker"
         - name: sqs_url
           value: "https://sqs.us-east-2.amazonaws.com/352708296901/edenb-yolo5"
+        - name: cert_file
+          value: "/usr/src/app/edenb11.crt"
         resources:
           requests:
             memory: "64Mi"
@@ -44,7 +46,7 @@ spec:
             path: /health
             port: 8443
           initialDelaySeconds: 10
-          periodSeconds: 15
+          periodSeconds: 20
 
 ---
 

@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: yolo5-deployment
+  name: yolo5-deployment-dev
+  namespace: dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: yolo5
+      app: yolo5-dev
   template:
     metadata:
       labels:
-        app: yolo5
+        app: yolo5-dev
     spec:
       containers:
-      - name: yolo5
-        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-yolo5-app:V1.0.12
+      - name: yolo5-dev
+        image: "352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-yolo5-dev:0.0.1"
         resources:
           requests:
             memory: "128Mi"
@@ -41,12 +42,12 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: yolo5-hpa
+  name: yolo5-hpa-dev
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: yolo5-deployment
+    name: yolo5-deployment-dev
   minReplicas: 1
   maxReplicas: 5
   metrics:
