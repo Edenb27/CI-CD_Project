@@ -21,7 +21,7 @@ spec:
           - name: secret-aws
             value: "edenb-polybot-dev"
           - name: TELEGRAM_APP_URL
-            value: "https://eden-polybot.devops-int-college.com"
+            value: "https://eden-polybot-dev.devops-int-college.com"
           - name: dynamo-table
             value: "edenb-yolo5-dev"
           - name: BUCKET_NAME
