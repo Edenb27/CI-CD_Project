@@ -11,8 +11,8 @@ import boto3
 from decimal import Decimal
 
 
-images_bucket = 'edenb27-docker'
-queue_name = 'edenb-yolo5'
+images_bucket = os.environ['images_bucket']
+queue_name = os.environ['queue_name']
 
 sqs_client = boto3.client('sqs', region_name='us-east-2')
 
@@ -112,12 +112,13 @@ def consume():
                 # TODO store the prediction_summary in a DynamoDB table
 
                 dynamodb = boto3.resource('dynamodb', region_name='us-east-2')
-                table_name = 'edenb-yolo5'
+                table_name = os.environ['table_name']
                 table = dynamodb.Table(table_name)
                 table.put_item(Item=prediction_summary)
 
                 # TODO perform a GET request to Polybot to `/results` endpoint
-            requests.get(f'http://polybot-service:8443/results?predictionId={prediction_id}'
+            request_url = os.environ['request_url']
+            requests.get(f'http://{request_url}:8443/results?predictionId={prediction_id}'
                          f'&chatId={chat_id}')
             # Delete the message from the queue as the job is considered as DONE
             sqs_client.delete_message(QueueUrl=queue_name, ReceiptHandle=receipt_handle)
