@@ -16,7 +16,7 @@ spec:
       containers:
       - name: polybot-dev
 
-        image: "352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-polybot-dev:0.0.5"
+        image: "352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-polybot-dev:0.0.8"
         env:
           - name: secret-aws
             value: "edenb-polybot-dev"
@@ -29,7 +29,7 @@ spec:
           - name: sqs_url
             value: "https://sqs.us-east-2.amazonaws.com/352708296901/edenb27-sqs-dev"
           - name: cert_file
-            value: "/usr/src/app/eden-dev.crt"
+            value: "/usr/src/app/eden-dev2.crt"
         resources:
           requests:
             memory: "64Mi"
