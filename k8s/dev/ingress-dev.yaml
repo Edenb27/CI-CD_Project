@@ -7,7 +7,7 @@ spec:
   tls:
     - hosts:
       - eden-polybot-dev.devops-int-college.com
-      secretName: tls-secret
+      secretName: tls-secret1
   ingressClassName: nginx
   rules:
     - host: eden-polybot-dev.devops-int-college.com
