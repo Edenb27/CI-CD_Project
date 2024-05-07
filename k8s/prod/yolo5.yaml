@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: yolo5
-        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-yolo5-app:0.0.104
+        image: 352708296901.dkr.ecr.us-east-2.amazonaws.com/edenb27-yolo5-app:0.0.105
         env:
           - name: images_bucket
             value: "edenb27-docker"
