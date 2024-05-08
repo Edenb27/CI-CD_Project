@@ -75,7 +75,7 @@ class ObjectDetectionBot(Bot):
     def handle_message(self, msg):
         logger.info(f'Incoming message: {msg}')
         if msg.get('text'):
-            hello = f'\nHello and welcome to *DEV* Eden Predict-Bot \n' \
+            hello = f'\nHello and welcome to DEV-DEVOPS Eden Predict-Bot \n' \
                     f'\n Please send image to prediction'
             self.send_text(msg['chat']['id'], hello)
 
