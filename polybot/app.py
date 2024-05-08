@@ -58,7 +58,7 @@ def results():
     text_results = 'Predictions: ' + item['detected_objects']
     print(f'chatId: {chat_id}')
     bot.send_text(chat_id, text_results)
-    bot.send_text(chat_id, {'Pretiction ID': prediction_id})
+    bot.send_text(chat_id, {'Prediction ID': prediction_id})
     return 'Ok'
 
 
