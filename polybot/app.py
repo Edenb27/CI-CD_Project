@@ -58,6 +58,7 @@ def results():
     text_results = 'Predictions: ' + item['detected_objects']
     print(f'chatId: {chat_id}')
     bot.send_text(chat_id, text_results)
+    bot.send_text(chat_id, prediction_id)
     return 'Ok'
 
 
